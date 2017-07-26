@@ -100,7 +100,7 @@ exports.$$ = $$;
 /* 1 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error\n    at /Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/NormalModule.js:141:35\n    at /Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:170:18\n    at loadLoader (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/loadLoader.js:27:11)\n    at iteratePitchingLoaders (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:173:18\n    at loadLoader (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/loadLoader.js:36:3)\n    at iteratePitchingLoaders (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/loader-runner/lib/LoaderRunner.js:362:2)\n    at NormalModule.doBuild (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/NormalModule.js:129:2)\n    at NormalModule.build (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/NormalModule.js:180:15)\n    at Compilation.buildModule (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/Compilation.js:142:10)\n    at moduleFactory.create (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/Compilation.js:424:9)\n    at /Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/NormalModuleFactory.js:242:4\n    at /Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/NormalModuleFactory.js:93:13\n    at /Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/tapable/lib/Tapable.js:204:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/tapable/lib/Tapable.js:208:13)\n    at onDoneResolving (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/NormalModuleFactory.js:68:11)\n    at onDoneResolving (/Users/derekkelmanson/Desktop/basics/dang-thats-delish/Learn-Node/starter-files/node_modules/webpack/lib/NormalModuleFactory.js:189:6)\n    at _combinedTickCallback (internal/process/next_tick.js:95:7)\n    at process._tickCallback (internal/process/next_tick.js:161:9)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 2 */
@@ -112,6 +112,47 @@ throw new Error("Module build failed: Error\n    at /Users/derekkelmanson/Deskto
 __webpack_require__(1);
 
 var _bling = __webpack_require__(0);
+
+var _autocomplete = __webpack_require__(9);
+
+var _autocomplete2 = _interopRequireDefault(_autocomplete);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _autocomplete2.default)((0, _bling.$)('#address'), (0, _bling.$)('#lat'), (0, _bling.$)('#lng'));
+
+/***/ }),
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function autocomplete(input, latInput, lngInput) {
+  if (!input) return; // skip this fn from running if there is not input on the page
+  var dropdown = new google.maps.places.Autocomplete(input);
+
+  dropdown.addListener('place_changed', function () {
+    var place = dropdown.getPlace();
+    latInput.value = place.geometry.location.lat();
+    lngInput.value = place.geometry.location.lng();
+  });
+  // if someone hits enter on the address field, don't submit the form
+  input.on('keydown', function (e) {
+    if (e.keyCode === 13) e.preventDefault();
+  });
+}
+
+exports.default = autocomplete;
 
 /***/ })
 /******/ ]);

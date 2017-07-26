@@ -7,7 +7,12 @@ mixin storeForm(store = {})
     //- address, lng and lat
     label(for='address') Address
     //- location[address] is sending nested data like location.address
-    input(type='text' id='address' name='location[address]')
+    input(type='text' id='address' name='location[address]' value=(store.location && store.location.address))
+    label(for='lng') Address lng
+    input(type='text' id='lng' name='location[coordinates][0]' value=(store.location && store.location.coordinates[0]))
+    label(for='lat') Address lat
+    input(type='text' id='lat' name='location[coordinates][1]' value=(store.location && store.location.coordinates[1]))
+
     - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian', 'Licensed']
     - const tags = store.tags || []
     ul.tags
